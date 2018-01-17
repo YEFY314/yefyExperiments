@@ -1,0 +1,7 @@
+CACHE MANIFEST
+#version 5
+../movies/movies.xml
+../movies/movies.css
+../movies/movies.xsl
+http://localhost:3000/stylesheets/style.css
+http://localhost:3000/bootstrap-3.3.7/css/bootstrap.min.css

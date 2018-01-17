@@ -1,0 +1,53 @@
+body {
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.warp{
+    width:1280px;
+    margin:0 auto;
+}
+.panel-body{
+    padding:0;
+}
+.infoBlock{
+  cursor: pointer;
+  display: inline-block;
+  width:130px;
+    height:90px;
+  margin-right:5px;
+  margin-bottom: 5px;
+  text-align: center;
+  vertical-align: top;
+  background-color:#dff0d8;
+}
+.col2{
+    width:300px;
+}
+.col3{
+    width:440px;
+}
+.col4{
+    width:550px;
+}
+.col5{
+    width:680px;
+}
+.col6{
+    width:850px;
+}
+.col9{
+    width:1230px;
+}
+.panel-body>.infoBlock3:nth-child(3n){
+  margin-right: 0;
+}
+.infoLine{
+    cursor: pointer;
+    background-color: #dff0d8;
+    margin-bottom: 5px;
+    height:30px;
+    width:390px;
+}

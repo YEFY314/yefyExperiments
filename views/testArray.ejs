@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>信息快速定位实验</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div id="app" class="container-fluid">
+    <h1>测试二</h1>
+    <h2>请在下面零件列表中找到<b v-text="target"></b><button class="btn btn-default" v-on:click="startTest()">开始测试</button></h2>
+    <div class="col-sm-3" v-show="show">
+        <div class="panel panel-success">
+            <div class="panel-heading"><p>零件列表</p></div>
+            <div class="panel-body">
+                <div v-for="(item, index) in randomData" v-on:click="select(item)"  class="infoBlock" >{{index+1}}.{{item}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="application/javascript"  src="/javascripts/jquery-3.1.1.js"></script>
+<script type="application/javascript" src="/javascripts/vue.js"></script>
+<script type="application/javascript">
+    $(function(){
+        var parts = [];
+        $.get({
+            url:'../parts',
+            async:false,
+            success:function(data){
+                parts = JSON.parse(data);
+            }
+        });
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                parts:parts,           //所有数据
+                randomData:[],        //备选项
+                isCorrect:false,    //答案是否正确
+                num:25,              //备选数量
+                target:'',         //选择目标
+                show:false,
+                startTime:null,
+                endTime:null,
+                count:1,             //实验计数
+                resultData:[],     //结果数据
+                experimentTime:20 //实验次数
+            },
+            created:function (){
+                console.log(this.parts);
+                var results = [];
+                var outcomes = [];
+                for(var i=0;i<this.num;){
+                    var j = Math.floor(Math.random()*54);       //56个零件
+                    if(results.indexOf(j)<0){
+                        results.push(j);
+                        i++;
+                        outcomes.push(this.parts[j]);
+                    }
+                }
+                console.log(outcomes);
+                this.randomData = outcomes;
+                this.target = outcomes[Math.floor(Math.random()*this.num)];
+            },
+            methods:{
+                select: function (selected) {
+                    this.endTime = +new Date();
+                    console.log(this.endTime-this.startTime);
+                    if(selected == this.target){
+                        this.isCorrect = true;
+                        console.log("success");
+                    }else{
+                        console.log("failed");
+                    }
+                    this.target = this.createTarget(this.num);
+                    this.show = false;
+                    this.resultData.push([this.isCorrect,this.endTime-this.startTime]);
+                    this.count++;
+                    if(this.count>this.experimentTime){
+
+                        return;
+                    }
+                    console.log(this.resultData);
+                },
+                startTest: function () {
+                    console.time("start");
+                    this.startTime = +new Date();
+                    this.show = true;
+                },
+                createTarget:function(num){
+                    return this.randomData[Math.floor(Math.random()*num)];
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>
