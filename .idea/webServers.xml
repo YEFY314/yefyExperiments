@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="196a20df-2dca-4c42-8061-2de113af5745" name="yefyExperiments" url="http://116.62.168.139">
+        <fileTransfer host="116.62.168.139" port="22" privateKey="C:\Users\yefen\Desktop\xtj.ppk" rootFolder="/var/yefyExperiments" accessType="SFTP" username="root" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

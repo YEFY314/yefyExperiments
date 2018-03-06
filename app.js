@@ -11,7 +11,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var test = require('./routes/test');
 
-var filePath = "d:\\学习\\血透机\\零部件统计.xlsx";
+var filePath = "./零部件统计.xlsx";
 var obj = xlsx.parse(filePath);
 var excelObj = obj[1].data;
 var parts = [];

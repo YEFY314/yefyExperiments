@@ -165,7 +165,8 @@
                         }
                         this.showList = false;
                         this.resultData.push([this.isCorrect,this.endTime-this.startTime,this.testType[this.stage-1]]);
-                        this.count++;
+                        this.countTimes();
+                     /*   this.count++;
                         if(this.count>this.experimentTime){
                             this.stage++;
                             if(this.stage>5){
@@ -178,8 +179,24 @@
                                 console.log("post");
                             }
                         }
-                        this.target = this.createTarget(this.num);
+                        this.target = this.createTarget(this.num);*/
                     }
+                },
+                countTimes:function(){
+                    this.count++;
+                    if(this.count>this.experimentTime){
+                        this.stage++;
+                        if(this.stage>5){
+                            this.num = 16;
+                        }
+                        this.randomData = this.getRandomData();
+                        this.count = 1;
+                        if(this.stage>11){      //postData
+                            this.postData();
+                            console.log("post");
+                        }
+                    }
+                    this.target = this.createTarget(this.num);
                 },
                 startTest: function () {
                     if(this.stage > 0){

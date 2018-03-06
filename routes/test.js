@@ -8,6 +8,7 @@ var fs = require("fs");
 
 /* GET home page. */
 router.get('/line', function(req, res, next){
+    console.log(res.locals.parts);
     res.render('test');
 });
 
